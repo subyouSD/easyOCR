@@ -1,0 +1,2 @@
+# easyOCR
+ easyOCR test
