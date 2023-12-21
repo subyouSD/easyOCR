@@ -19,3 +19,13 @@ pip install easyOCR imutils matplotlib pdf2image PIL opencv-python
 ## 4. image transform 없이 바로 easyOCR 적용  
 
 - 일단, 한국어는 괜찮은데 영어 인식률이 떨어진다. 
+
+
+easyOCR 4번 pool로 돌렸을 때  
+텍스트 추출 끝: 0:01:25.927955
+it took 0:01:44.342340 seconds.
+
+pytesseract 4번 pool로 돌렸을 때      
+텍스트 추출 끝: 3.1203503608703613
+총 소요시간: 36.68484830856323 seconds 
+

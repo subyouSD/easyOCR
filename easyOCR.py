@@ -104,10 +104,10 @@ def make_scan_image(image, width, ksize=(5,5), min_threshold=75, max_threshold=2
     return transform_image
 
 
-def putText(cv_img, text, x, y, color=(0,0,0), font_size=22):
+def putText(cv_img, text, x, y, color=(0,0,0), font_size=11):
     # Colab이 아닌 Local에서 수행 시, gulim.ttc사용
 
-    font = ImageFont.truetype('/Library/Fonts/NanumGothic-Regular.ttf', font_size)
+    font = ImageFont.truetype('NanumGothic-Regular.ttf', font_size)
     img = Image.fromarray(cv_img)
 
     draw = ImageDraw.Draw(img)
@@ -132,107 +132,10 @@ if __name__ == '__main__':
 
     '''
 
-    ## 예시 그 자체
-    # url = 'https://user-images.githubusercontent.com/69428232/155486780-55525c3c-8f5f-4313-8590-dd69d4ce4111.jpg'
-    #
-    # img_nparray = np.asarray(bytearray(requests.get(url).content), dtype=np.uint8)
-    # print(img_nparray.shape)
-    # org_image = cv2.imdecode(img_nparray, cv2.IMREAD_COLOR)
-    # print(type(org_image))
-    # print(org_image.shape)
-    # plt_imshow('Original image', org_image)
-    #
-    # print("after original image")
-    #
-    # business_card_image = make_scan_image(org_image, width=200, ksize=(5,5), min_threshold=20, max_threshold=100)
-    #
-    # print("after make_scan_image")
-    #
-    # langs = ['ko', 'en']
-    #
-    # print("[INFO] OCR'ing business card...")
-    # reader = Reader(lang_list=langs, gpu=True)
-    # results = reader.readtext(business_card_image)
-    #
-    # print(f'results = {results}')
-    #
-    # # detail 0으로 설정하면 인식된 글자만 추출 list 형태로 반환
-    # simple_results = reader.readtext(business_card_image, detail=0)
-    # print(f'simple_results = {simple_results}')
-    #
-    # for (bbox, text, prob) in results:
-    #     print("[INFO] {:.4f}: {}".format(prob, text))
-    #
-    #     (tl, tr, br, b1) = bbox
-    #     tl = (int(tl[0]), int(tl[1]))
-    #     tr = (int(tr[0]), int(tr[1]))
-    #     br = (int(br[0]), int(br[1]))
-    #     b1 = (int(b1[0]), int(b1[1]))
-    #
-    #     # 추출한 영역에 사각형을 그리고 인식한 글자를 표기
-    #     cv2.rectangle(business_card_image, tl, br, (0, 255, 0), 2)
-    #     print(text)
-    #     business_card_image = putText(business_card_image, text, tl[0], tl[1]-60, (0, 255, 0), 50)
-    #
-    # plt_imshow("Image", business_card_image, figsize=(16, 10))
-
-
-# --------------------------------------------------------------
-#     # 실제로 적용해 보기
-#     input_path = "Graduation Certificate_EN"
-#     output_path = "test/original_{zoom}.pdf"
-#
-#     dpi = 100
-#     threshold = 200
-#
-#     images = convert_from_path(f'test/{input_path}/{input_path}.pdf', dpi=dpi)
-#     org_image = np.array(images[0])
-#
-#     for img in images:
-#         img_np = np.array(img)
-#         img_np = cv2.cvtColor(img_np, cv2.COLOR_RGB2BGR)
-#         # print(img_np.shape)
-#         gray_img = cv2.cvtColor(img_np, cv2.COLOR_BGR2GRAY)
-#         # print(gray_img.shape)
-#         _, thresholded_img = cv2.threshold(gray_img, threshold, 255, cv2.THRESH_BINARY)
-#         # print(thresholded_img.shape)
-#
-#         org_image = np.stack((thresholded_img,) * 3, axis=-1)
-#
-#         plt_imshow("img_np", thresholded_img)
-#
-#         document_image = make_scan_image(org_image, width=200, ksize=(5,5), min_threshold=20, max_threshold=100)
-#
-#         langs = ['ko', 'en']
-#
-#         print("[INFO] OCR'ing input image...")
-#
-#         reader = Reader(lang_list=langs, gpu=True)
-#         results = reader.readtext(document_image)
-#         print(f'results = {results}')
-#
-#         simple_results = reader.readtext(document_image, detail = 0)
-#
-#         for (bbox, text, prob) in results:
-#             if prob > 0.4:
-#                 print("[INFO] {:.4f}: {}".format(prob, text))
-#
-#             (tl, tr, br, bl) = bbox
-#             tl = (int(tl[0]), int(tl[1]))
-#             tr = (int(tr[0]), int(tr[1]))
-#             br = (int(br[0]), int(br[1]))
-#             bl = (int(bl[0]), int(bl[1]))
-#
-#             # 추출한 영역에 사각형을 그리고 인식한 글자를 표기합니다.
-#             cv2.rectangle(document_image, tl, br, (0, 255, 0), 2)
-#             document_image = putText(document_image, text, tl[0], tl[1] - 60, (0, 255, 0), 20)
-#
-#         plt_imshow("Image", document_image, figsize=(10, 8))
 
 # 문서 crop 없이 바로 OCR 적용
         # 실제로 적용해 보기
-    input_path = "Graduation Certificate_KR"
-    output_path = "test/original_{zoom}.pdf"
+    input_path = "transcript_KR"
 
     dpi = 160
     threshold = 200
